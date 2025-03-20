@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Builder
 @Data
 
@@ -20,21 +18,23 @@ public class EntCobranca {
     @Column(name = "CHAVE", columnDefinition = "VARCHAR(77)")
     private String chave;
 
+    /*
     @OneToOne(cascade = CascadeType.ALL)
     private Calendario calendario;
 
+    */
     @Column(name = "REVISAO", columnDefinition = "INTEGER")
     private Integer revisao;
 
-    private Location loc;
+    //private Location loc;
 
-    String location;
+    //String location;
 
     @Column(name = "STATUS", columnDefinition = "VARCHAR(30)")
     @Enumerated
     StatusCobranca status;
 
-    private Valor valor;
+    //private Valor valor;
 
     @Column(name = "PIX_COPIA_E_COLA", columnDefinition = "VARCHAR(512)")
     String pixCopiaECola;
@@ -42,5 +42,5 @@ public class EntCobranca {
     @Column(name = "SOLICITACA_PAGADOR", columnDefinition = "VARCHAR(140)")
     String solicitacaoPagador;
 
-    List<InformacaoAdicional> infoAdicionais;
+    //List<InformacaoAdicional> infoAdicionais;
 }
