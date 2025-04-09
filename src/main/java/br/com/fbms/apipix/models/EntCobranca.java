@@ -2,11 +2,15 @@ package br.com.fbms.apipix.models;
 
 import br.com.fbms.apipix.enums.StatusCobranca;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "TB_COBRANCA")
@@ -18,11 +22,11 @@ public class EntCobranca {
     @Column(name = "CHAVE", columnDefinition = "VARCHAR(77)")
     private String chave;
 
-    /*
-    @OneToOne(cascade = CascadeType.ALL)
+    @Embedded
+    @AttributeOverride(name = "expiracao", column = @Column(name = "EXPIRACAO_CALENDARIO", columnDefinition = "INTEGER"))
+    @AttributeOverride(name = "criacao", column = @Column(name = "DT_CRIACAO_CALENDARIO", columnDefinition = "DATETIME"))
     private Calendario calendario;
 
-    */
     @Column(name = "REVISAO", columnDefinition = "INTEGER")
     private Integer revisao;
 
@@ -43,4 +47,6 @@ public class EntCobranca {
     String solicitacaoPagador;
 
     //List<InformacaoAdicional> infoAdicionais;
+
+    //metodos
 }
