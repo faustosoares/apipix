@@ -30,15 +30,24 @@ public class EntCobranca {
     @Column(name = "REVISAO", columnDefinition = "INTEGER")
     private Integer revisao;
 
-    //private Location loc;
+    @Embedded
+    @AttributeOverride(name = "id", column = @Column(name = "ID_LOC", columnDefinition = "INTEGER"))
+    @AttributeOverride(name = "location", column = @Column(name = "LOCATION_LOC", columnDefinition = "VARCHAR(77)"))
+    @AttributeOverride(name = "tipoCob", column = @Column(name = "TIPO_COB_LOC", columnDefinition = "VARCHAR(4)"))
+    @AttributeOverride(name = "criacao", column = @Column(name = "CRIACAO_LOC", columnDefinition = "DATETIME"))
+    private Location loc;
 
-    //String location;
+    @Column(name = "LOCATION", columnDefinition = "VARCHAR(77)")
+    String location;
 
     @Column(name = "STATUS", columnDefinition = "VARCHAR(30)")
     @Enumerated
     StatusCobranca status;
 
-    //private Valor valor;
+    @Embedded
+    @AttributeOverride(name = "original", column = @Column(name = "ORIGINAL_VALOR", columnDefinition = "NUMERIC"))
+    @AttributeOverride(name = "modalidadeAlteracao", column = @Column(name = "MODALIDADE_ALTERACAO_VALOR", columnDefinition = "INTEGER"))
+    private Valor valor;
 
     @Column(name = "PIX_COPIA_E_COLA", columnDefinition = "VARCHAR(512)")
     String pixCopiaECola;
@@ -47,6 +56,4 @@ public class EntCobranca {
     String solicitacaoPagador;
 
     //List<InformacaoAdicional> infoAdicionais;
-
-    //metodos
 }
