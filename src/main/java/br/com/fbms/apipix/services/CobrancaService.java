@@ -8,6 +8,7 @@ import br.com.fbms.apipix.models.Calendario;
 import br.com.fbms.apipix.models.EntCobranca;
 import br.com.fbms.apipix.models.Location;
 import br.com.fbms.apipix.repositories.CobrancaRepository;
+import br.com.fbms.apipix.util.PixUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,15 @@ public class CobrancaService {
 
         var cobranca = cobrancaRepository.findById(txId).orElse(null);
 
+
+        String copiaECola = PixUtils.gerarPixCopiaECola(
+                request.chave(),
+                "Jose da Silva", //Definir mediante obtencao do token da conta
+                "Aracaju",
+                String.valueOf(request.valor().original()),
+                txId);
+
+
         cobranca = EntCobranca.builder()
                 .txId(txId)
                 .calendario(Calendario.builder()
@@ -40,6 +50,8 @@ public class CobrancaService {
                         .tipoCob(TipoCobranca.COB)
                         .location(request.location())
                         .build())
+                .solicitacaoPagador(request.solicitacaoPagador())
+                .pixCopiaECola(copiaECola)
                 .build();
 
         cobrancaRepository.save(cobranca);

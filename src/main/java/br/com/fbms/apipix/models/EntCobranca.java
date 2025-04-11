@@ -52,7 +52,7 @@ public class EntCobranca {
     @Column(name = "PIX_COPIA_E_COLA", columnDefinition = "VARCHAR(512)")
     String pixCopiaECola;
 
-    @Column(name = "SOLICITACA_PAGADOR", columnDefinition = "VARCHAR(140)")
+    @Column(name = "SOLICITACAO_PAGADOR", columnDefinition = "VARCHAR(140)")
     String solicitacaoPagador;
 
     //List<InformacaoAdicional> infoAdicionais;
