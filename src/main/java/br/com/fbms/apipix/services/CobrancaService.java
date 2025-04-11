@@ -45,25 +45,5 @@ public class CobrancaService {
         cobrancaRepository.save(cobranca);
 
         return mapper.toResponseCobrancaDTO(cobranca);
-
-        /*
-        return ResponseCobrancaDTO.builder()
-                .txId(cobranca.getTxId())
-                .calendario(CalendarioDTO.builder()
-                        .criacao(cobranca.getCalendario().getCriacao())
-                        .expiracao(cobranca.getCalendario().getExpiracao())
-                        .build())
-                .chave(cobranca.getChave())
-                .revisao(cobranca.getRevisao())
-                .location(cobranca.getLocation())
-                .loc(LocationDTO.builder()
-                        .criacao(cobranca.getLoc().getCriacao())
-                        .id(cobranca.getLoc().getId())
-                        .location(cobranca.getLoc().getLocation())
-                        .tipoCob(cobranca.getLoc().getTipoCob())
-                        .build())
-                .build();
-
-         */
     }
 }
