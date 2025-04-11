@@ -1,10 +1,9 @@
 package br.com.fbms.apipix.services;
 
-import br.com.fbms.apipix.dto.CalendarioDTO;
-import br.com.fbms.apipix.dto.LocationDTO;
 import br.com.fbms.apipix.dto.RequestCobrancaDTO;
 import br.com.fbms.apipix.dto.ResponseCobrancaDTO;
 import br.com.fbms.apipix.enums.TipoCobranca;
+import br.com.fbms.apipix.mapper.CobrancaMapper;
 import br.com.fbms.apipix.models.Calendario;
 import br.com.fbms.apipix.models.EntCobranca;
 import br.com.fbms.apipix.models.Location;
@@ -20,6 +19,8 @@ import java.util.Random;
 public class CobrancaService {
 
     private final CobrancaRepository cobrancaRepository;
+
+    private final CobrancaMapper mapper;
 
     public ResponseCobrancaDTO criar(String txId, RequestCobrancaDTO request) {
 
@@ -43,6 +44,9 @@ public class CobrancaService {
 
         cobrancaRepository.save(cobranca);
 
+        return mapper.toResponseCobrancaDTO(cobranca);
+
+        /*
         return ResponseCobrancaDTO.builder()
                 .txId(cobranca.getTxId())
                 .calendario(CalendarioDTO.builder()
@@ -59,5 +63,7 @@ public class CobrancaService {
                         .tipoCob(cobranca.getLoc().getTipoCob())
                         .build())
                 .build();
+
+         */
     }
 }

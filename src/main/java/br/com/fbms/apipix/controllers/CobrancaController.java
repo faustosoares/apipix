@@ -16,7 +16,6 @@ public class CobrancaController {
 
     private final CobrancaService cobrancaService;
 
-
     @PutMapping(path = "/{txid}")
     public ResponseEntity<ResponseCobrancaDTO> criarCobranca(@PathVariable("txid") String txId,
                                                              @RequestBody RequestCobrancaDTO request) {
